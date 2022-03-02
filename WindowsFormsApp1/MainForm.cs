@@ -10,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Windows.Forms;
+using WindowsFormsApp1.Заявки;
 
 namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
     {
         string userID = null;
+        string userIsAdmin = null;
         public MainForm()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace WindowsFormsApp1
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter();
 
-            SqlCommand command = new SqlCommand("Select [login], [id] from [user] where [login] = @login and [password] = @password", db.getConnection());
+            SqlCommand command = new SqlCommand("Select [login], [id], [userGroupId] from [user] where [login] = @login and [password] = @password", db.getConnection());
             command.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
             command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
 
@@ -46,12 +48,14 @@ namespace WindowsFormsApp1
             {
                 label3.Text ="Вы вошли как " + table.Rows[0][0].ToString();
                 userID = table.Rows[0][1].ToString();
+                userIsAdmin = table.Rows[0][2].ToString();
                 textBoxLogin.Hide();
                 textBoxPassword.Hide();
                 label1.Hide();
                 label2.Hide();
                 buttonLogin.Hide();
                 buttonQuit.Show();
+                buttonProfile.Show();
             }
             else
             {
@@ -63,12 +67,39 @@ namespace WindowsFormsApp1
         private void buttonQuit_Click(object sender, EventArgs e)
         {
             userID = null;
+            userIsAdmin = null;
             textBoxLogin.Show();
             textBoxPassword.Show();
             label1.Show();
             label2.Show();
             buttonLogin.Show();
+            buttonProfile.Hide();
             buttonQuit.Hide();
+            label3.Text = "Вы не аавторизованы";
+        }
+
+        private void получениеПаспорта14ЛетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Заявки.Passport14 passport14 = new Заявки.Passport14(userID, userIsAdmin);
+            passport14.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Profile profile = new Profile(userID);
+            profile.ShowDialog();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            AddZayavka zayavka = new AddZayavka(userID);
+            zayavka.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Zayavki zayavki = new Zayavki(userID);
+            zayavki.ShowDialog();
         }
     }
 }

@@ -210,6 +210,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="doc\BirthSertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doc\BirthSertificate.Designer.cs">
+      <DependentUpon>BirthSertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doc\Snils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doc\Snils.Designer.cs">
+      <DependentUpon>Snils.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,10 +233,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KursDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Заявки\AddZayavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заявки\AddZayavka.Designer.cs">
+      <DependentUpon>AddZayavka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Заявки\Passport14.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заявки\Passport14.Designer.cs">
+      <DependentUpon>Passport14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Заявки\Zayavki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заявки\Zayavki.Designer.cs">
+      <DependentUpon>Zayavki.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="doc\BirthSertificate.resx">
+      <DependentUpon>BirthSertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doc\Snils.resx">
+      <DependentUpon>Snils.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -235,6 +280,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Заявки\AddZayavka.resx">
+      <DependentUpon>AddZayavka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Заявки\Passport14.resx">
+      <DependentUpon>Passport14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Заявки\Zayavki.resx">
+      <DependentUpon>Zayavki.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="KursDataSet.xsc">
       <DependentUpon>KursDataSet.xsd</DependentUpon>
     </None>

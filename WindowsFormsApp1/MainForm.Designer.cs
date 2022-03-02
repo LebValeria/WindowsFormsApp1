@@ -37,6 +37,12 @@
             this.buttonQuit = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.заявкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.заменаПаспортаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.оформлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.получениеПаспорта14ЛетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonProfile = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,7 +99,7 @@
             // 
             // buttonQuit
             // 
-            this.buttonQuit.Location = new System.Drawing.Point(12, 100);
+            this.buttonQuit.Location = new System.Drawing.Point(12, 110);
             this.buttonQuit.Name = "buttonQuit";
             this.buttonQuit.Size = new System.Drawing.Size(252, 25);
             this.buttonQuit.TabIndex = 6;
@@ -109,21 +115,78 @@
             this.заявкиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1148, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // заявкиToolStripMenuItem
             // 
+            this.заявкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.заменаПаспортаToolStripMenuItem,
+            this.оформлениеToolStripMenuItem,
+            this.получениеПаспорта14ЛетToolStripMenuItem});
             this.заявкиToolStripMenuItem.Name = "заявкиToolStripMenuItem";
-            this.заявкиToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.заявкиToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.заявкиToolStripMenuItem.Text = "Заявки";
+            // 
+            // заменаПаспортаToolStripMenuItem
+            // 
+            this.заменаПаспортаToolStripMenuItem.Name = "заменаПаспортаToolStripMenuItem";
+            this.заменаПаспортаToolStripMenuItem.Size = new System.Drawing.Size(300, 26);
+            this.заменаПаспортаToolStripMenuItem.Text = "Замена паспорта";
+            // 
+            // оформлениеToolStripMenuItem
+            // 
+            this.оформлениеToolStripMenuItem.Name = "оформлениеToolStripMenuItem";
+            this.оформлениеToolStripMenuItem.Size = new System.Drawing.Size(300, 26);
+            this.оформлениеToolStripMenuItem.Text = "Оформление загранпаспорта";
+            // 
+            // получениеПаспорта14ЛетToolStripMenuItem
+            // 
+            this.получениеПаспорта14ЛетToolStripMenuItem.Name = "получениеПаспорта14ЛетToolStripMenuItem";
+            this.получениеПаспорта14ЛетToolStripMenuItem.Size = new System.Drawing.Size(300, 26);
+            this.получениеПаспорта14ЛетToolStripMenuItem.Text = "Получение паспорта (14 лет)";
+            this.получениеПаспорта14ЛетToolStripMenuItem.Click += new System.EventHandler(this.получениеПаспорта14ЛетToolStripMenuItem_Click);
+            // 
+            // buttonProfile
+            // 
+            this.buttonProfile.Location = new System.Drawing.Point(12, 79);
+            this.buttonProfile.Name = "buttonProfile";
+            this.buttonProfile.Size = new System.Drawing.Size(252, 25);
+            this.buttonProfile.TabIndex = 8;
+            this.buttonProfile.Text = "Моя учетная запись";
+            this.buttonProfile.UseVisualStyleBackColor = true;
+            this.buttonProfile.Visible = false;
+            this.buttonProfile.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(870, 79);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(252, 25);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Подать заявку";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(870, 119);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(252, 25);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Мои заявки";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 558);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonProfile);
             this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -154,6 +217,12 @@
         private System.Windows.Forms.Button buttonQuit;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem заявкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem заменаПаспортаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem оформлениеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem получениеПаспорта14ЛетToolStripMenuItem;
+        private System.Windows.Forms.Button buttonProfile;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
