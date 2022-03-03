@@ -5682,6 +5682,10 @@ namespace WindowsFormsApp1 {
             
             private global::System.Data.DataColumn columnДата;
             
+            private global::System.Data.DataColumn columnidType;
+            
+            private global::System.Data.DataColumn columnid;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ZayavkiDataTable() {
@@ -5741,6 +5745,22 @@ namespace WindowsFormsApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn idTypeColumn {
+                get {
+                    return this.columnidType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5776,12 +5796,14 @@ namespace WindowsFormsApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ZayavkiRow AddZayavkiRow(string Тип_заявки, string Статус, System.DateTime Дата) {
+            public ZayavkiRow AddZayavkiRow(string Тип_заявки, string Статус, System.DateTime Дата, int idType, int id) {
                 ZayavkiRow rowZayavkiRow = ((ZayavkiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Тип_заявки,
                         Статус,
-                        Дата};
+                        Дата,
+                        idType,
+                        id};
                 rowZayavkiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowZayavkiRow);
                 return rowZayavkiRow;
@@ -5807,6 +5829,8 @@ namespace WindowsFormsApp1 {
                 this.columnТип_заявки = base.Columns["Тип заявки"];
                 this.columnСтатус = base.Columns["Статус"];
                 this.columnДата = base.Columns["Дата"];
+                this.columnidType = base.Columns["idType"];
+                this.columnid = base.Columns["id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5818,11 +5842,17 @@ namespace WindowsFormsApp1 {
                 base.Columns.Add(this.columnСтатус);
                 this.columnДата = new global::System.Data.DataColumn("Дата", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnДата);
+                this.columnidType = new global::System.Data.DataColumn("idType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidType);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
                 this.columnТип_заявки.AllowDBNull = false;
                 this.columnТип_заявки.MaxLength = 200;
                 this.columnСтатус.AllowDBNull = false;
                 this.columnСтатус.MaxLength = 200;
                 this.columnДата.AllowDBNull = false;
+                this.columnidType.AllowDBNull = false;
+                this.columnid.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7549,6 +7579,28 @@ namespace WindowsFormsApp1 {
                 }
                 set {
                     this[this.tableZayavki.ДатаColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int idType {
+                get {
+                    return ((int)(this[this.tableZayavki.idTypeColumn]));
+                }
+                set {
+                    this[this.tableZayavki.idTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int id {
+                get {
+                    return ((int)(this[this.tableZayavki.idColumn]));
+                }
+                set {
+                    this[this.tableZayavki.idColumn] = value;
                 }
             }
         }
@@ -13736,6 +13788,8 @@ SELECT id, userGroupId, genderId, name, lastName, middleName, login, password, b
             tableMapping.ColumnMappings.Add("Тип заявки", "Тип заявки");
             tableMapping.ColumnMappings.Add("Статус", "Статус");
             tableMapping.ColumnMappings.Add("Дата", "Дата");
+            tableMapping.ColumnMappings.Add("idType", "idType");
+            tableMapping.ColumnMappings.Add("id", "id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13752,7 +13806,7 @@ SELECT id, userGroupId, genderId, name, lastName, middleName, login, password, b
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Тип заявки], Статус, Дата FROM dbo.Zayavki";
+            this._commandCollection[0].CommandText = "SELECT [Тип заявки], Статус, Дата, idType, id FROM dbo.Zayavki";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

@@ -259,6 +259,12 @@
     <Compile Include="Заявки\Zayavki.Designer.cs">
       <DependentUpon>Zayavki.cs</DependentUpon>
     </Compile>
+    <Compile Include="Заявки\ZayavkiChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заявки\ZayavkiChange.Designer.cs">
+      <DependentUpon>ZayavkiChange.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="doc\BirthSertificate.resx">
       <DependentUpon>BirthSertificate.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Заявки\Zayavki.resx">
       <DependentUpon>Zayavki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Заявки\ZayavkiChange.resx">
+      <DependentUpon>ZayavkiChange.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="KursDataSet.xsc">
       <DependentUpon>KursDataSet.xsd</DependentUpon>

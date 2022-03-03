@@ -56,6 +56,12 @@ namespace WindowsFormsApp1
                 buttonLogin.Hide();
                 buttonQuit.Show();
                 buttonProfile.Show();
+                button1.Show();
+                button2.Show();
+                if(userIsAdmin == "1")
+                {
+                    button2.Text = "Список заявок";
+                }
             }
             else
             {
@@ -74,8 +80,11 @@ namespace WindowsFormsApp1
             label2.Show();
             buttonLogin.Show();
             buttonProfile.Hide();
+            button1.Hide();
+            button2.Hide();
             buttonQuit.Hide();
             label3.Text = "Вы не аавторизованы";
+            button2.Text = "Мои заявки";
         }
 
         private void получениеПаспорта14ЛетToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,7 +107,7 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Zayavki zayavki = new Zayavki(userID);
+            Zayavki zayavki = new Zayavki(userID,userIsAdmin);
             zayavki.ShowDialog();
         }
     }
