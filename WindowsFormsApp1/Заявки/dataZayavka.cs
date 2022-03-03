@@ -11,19 +11,18 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Заявки
 {
-    public partial class AddZayavka : Form
+    public partial class dataZayavka : Form
     {
-        string userId;
-        public AddZayavka(string userId)
+        public dataZayavka()
         {
             InitializeComponent();
-            this.userId = userId;
         }
 
-        private void AddZayavka_Load(object sender, EventArgs e)
+        private void dataZayavka_Load(object sender, EventArgs e)
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "kursDataSet.orderType". При необходимости она может быть перемещена или удалена.
             this.orderTypeTableAdapter.Fill(this.kursDataSet.orderType);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,31 +39,17 @@ namespace WindowsFormsApp1.Заявки
             string text = null;
             foreach (DataRow row in table.Rows)
             {
-                text += row["name"]+", ";
+                text += row["name"] + ", ";
             }
-            if(text != null)
+            if (text != null)
             {
-                text = text.Remove(text.Length -2);
-                MessageBox.Show("Для одобрения заявки необходими заполнить:" + text + ". Убедитесь что вы верно заполнили документы в своем профиле.");
+                text = text.Remove(text.Length - 2);
+                MessageBox.Show("Для одобрения заявки необходими заполнить:" + text + ".");
             }
-
-            cmd = new SqlCommand("Insert into [order] ([userId],[statusId], [orderTypeId], [creationDate])" +
-                " values (@id, @status, @type, @date)", db.getConnection());
-            cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-            cmd.Parameters.Add("@status", SqlDbType.Int).Value = 3;
-            cmd.Parameters.Add("@type", SqlDbType.Int).Value = comboBox1.SelectedValue;
-            cmd.Parameters.Add("@date", SqlDbType.Date).Value = DateTime.Now;
-            db.openConnection();
-            try
+            else
             {
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Заявка сохранена");
+                MessageBox.Show("Для заявки не требуются заполнять документы.");
             }
-            catch
-            {
-                MessageBox.Show("Ошибка данные не выбраны");
-            }
-            db.closeConnection();
         }
     }
 }

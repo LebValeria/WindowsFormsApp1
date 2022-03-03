@@ -66,6 +66,7 @@ namespace WindowsFormsApp1
             if (table3.Rows.Count > 0)
             {
                 textBox8.Text = table3.Rows[0][0].ToString();
+                button2.Hide();
             }
             else
             {
@@ -85,6 +86,7 @@ namespace WindowsFormsApp1
                 textBox11.Text = table4.Rows[0][2].ToString();
                 textBox13.Text = table4.Rows[0][3].ToString();
                 textBox12.Text = table4.Rows[0][4].ToString();
+                button3.Hide();
             }
             else
             {
@@ -93,6 +95,26 @@ namespace WindowsFormsApp1
                 textBox11.ReadOnly = true;
                 textBox12.ReadOnly = true;
                 textBox13.ReadOnly = true;
+            }
+
+            command3 = new SqlCommand("Select [series], [number], [dateOfIssue] " +
+                " from [passport] where [userId] = @id", db2.getConnection());
+            command3.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+            adapter2.SelectCommand = command3;
+            DataTable table5 = new DataTable();
+            adapter2.Fill(table5);
+            if (table5.Rows.Count > 0)
+            {
+                textBox14.Text = table5.Rows[0][0].ToString();
+                textBox15.Text = table5.Rows[0][1].ToString();
+                textBox16.Text = table5.Rows[0][2].ToString();
+                button4.Hide();
+            }
+            else
+            {
+                textBox14.ReadOnly = true;
+                textBox15.ReadOnly = true;
+                textBox16.ReadOnly = true;
             }
             db2.closeConnection();
         }
@@ -162,6 +184,24 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Неверно введен сертификат о рождении");
                 }
             }
+
+            command = new SqlCommand("update [passport] set [number]=@number, [series]=@series, " +
+            "[dateOfIssue] = @date where [userId]=@id", db2.getConnection());
+            if (textBox14.Text.Length > 0 && textBox15.Text.Length > 0 && textBox16.Text.Length > 0)
+            {
+                command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@series", SqlDbType.VarChar).Value = textBox14.Text;
+                command.Parameters.Add("@number", SqlDbType.VarChar).Value = textBox15.Text;
+                command.Parameters.Add("@date", SqlDbType.Date).Value = textBox16.Text;
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    MessageBox.Show("Неверно введен паспорт");
+                }
+            }
             db2.closeConnection();
         }
 
@@ -200,6 +240,24 @@ namespace WindowsFormsApp1
             BirthSertificate snils = new BirthSertificate(userId);
             snils.FormClosed += new FormClosedEventHandler(birth_FormClosing);
             snils.ShowDialog();
+        }
+
+        void passport_FormClosing(object sender, EventArgs e)
+        {
+            FormRefresh();
+            if (textBox14.Text.Length > 0 && textBox15.Text.Length > 0)
+            {
+                textBox14.ReadOnly = false;
+                textBox15.ReadOnly = false;
+                textBox16.ReadOnly = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Passport passport = new Passport(userId);
+            passport.FormClosed += new FormClosedEventHandler(passport_FormClosing);
+            passport.ShowDialog();
         }
     }
 }

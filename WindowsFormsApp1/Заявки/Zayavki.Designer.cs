@@ -29,36 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            MySql.Data.MySqlClient.MySqlParameter mySqlParameter2 = new MySql.Data.MySqlClient.MySqlParameter();
+            MySql.Data.MySqlClient.MySqlParameter mySqlParameter1 = new MySql.Data.MySqlClient.MySqlParameter();
             this.kursDataSet = new WindowsFormsApp1.KursDataSet();
             this.mySqlConnection1 = new MySql.Data.MySqlClient.MySqlConnection();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.orderTypeTableAdapter = new WindowsFormsApp1.KursDataSetTableAdapters.orderTypeTableAdapter();
             this.kursDataSet1 = new WindowsFormsApp1.KursDataSet();
             this.zayavkiTableAdapter = new WindowsFormsApp1.KursDataSetTableAdapters.ZayavkiTableAdapter();
-            this.orderTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.zayavkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.типЗаявкиDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.статусDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.датаDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fKorderorderTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderTableAdapter = new WindowsFormsApp1.KursDataSetTableAdapters.orderTableAdapter();
-            this.orderTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.zayavkiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.типЗаявкиDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.статусDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.датаDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.имяDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.фамилияDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.отчествоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.датаРешенияDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zayavkiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKorderorderTypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zayavkiBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // kursDataSet
@@ -77,14 +77,14 @@
             this.mySqlCommand1.CommandType = System.Data.CommandType.StoredProcedure;
             this.mySqlCommand1.Connection = null;
             this.mySqlCommand1.EnableCaching = false;
-            mySqlParameter2.MySqlDbType = MySql.Data.MySqlClient.MySqlDbType.Int32;
-            mySqlParameter2.ParameterName = "@id";
-            mySqlParameter2.Precision = ((byte)(0));
-            mySqlParameter2.Scale = ((byte)(0));
-            mySqlParameter2.Size = 0;
-            mySqlParameter2.SourceColumn = null;
-            mySqlParameter2.SourceVersion = System.Data.DataRowVersion.Default;
-            this.mySqlCommand1.Parameters.Add(mySqlParameter2);
+            mySqlParameter1.MySqlDbType = MySql.Data.MySqlClient.MySqlDbType.Int32;
+            mySqlParameter1.ParameterName = "@id";
+            mySqlParameter1.Precision = ((byte)(0));
+            mySqlParameter1.Scale = ((byte)(0));
+            mySqlParameter1.Size = 0;
+            mySqlParameter1.SourceColumn = null;
+            mySqlParameter1.SourceVersion = System.Data.DataRowVersion.Default;
+            this.mySqlCommand1.Parameters.Add(mySqlParameter1);
             this.mySqlCommand1.Transaction = null;
             // 
             // orderTypeTableAdapter
@@ -100,16 +100,6 @@
             // 
             this.zayavkiTableAdapter.ClearBeforeFill = true;
             // 
-            // orderTypeBindingSource
-            // 
-            this.orderTypeBindingSource.DataMember = "orderType";
-            this.orderTypeBindingSource.DataSource = this.kursDataSet1;
-            // 
-            // zayavkiBindingSource
-            // 
-            this.zayavkiBindingSource.DataMember = "Zayavki";
-            this.zayavkiBindingSource.DataSource = this.kursDataSet1;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
@@ -119,7 +109,11 @@
             this.типЗаявкиDataGridViewTextBoxColumn,
             this.статусDataGridViewTextBoxColumn,
             this.датаDataGridViewTextBoxColumn,
-            this.idTypeDataGridViewTextBoxColumn});
+            this.idTypeDataGridViewTextBoxColumn,
+            this.имяDataGridViewTextBoxColumn,
+            this.фамилияDataGridViewTextBoxColumn,
+            this.отчествоDataGridViewTextBoxColumn,
+            this.датаРешенияDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.zayavkiBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(20, 32);
             this.dataGridView1.Name = "dataGridView1";
@@ -128,60 +122,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(815, 305);
             this.dataGridView1.TabIndex = 3;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // типЗаявкиDataGridViewTextBoxColumn
-            // 
-            this.типЗаявкиDataGridViewTextBoxColumn.DataPropertyName = "Тип заявки";
-            this.типЗаявкиDataGridViewTextBoxColumn.HeaderText = "Тип заявки";
-            this.типЗаявкиDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.типЗаявкиDataGridViewTextBoxColumn.Name = "типЗаявкиDataGridViewTextBoxColumn";
-            this.типЗаявкиDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // статусDataGridViewTextBoxColumn
-            // 
-            this.статусDataGridViewTextBoxColumn.DataPropertyName = "Статус";
-            this.статусDataGridViewTextBoxColumn.HeaderText = "Статус";
-            this.статусDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.статусDataGridViewTextBoxColumn.Name = "статусDataGridViewTextBoxColumn";
-            this.статусDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // датаDataGridViewTextBoxColumn
-            // 
-            this.датаDataGridViewTextBoxColumn.DataPropertyName = "Дата";
-            this.датаDataGridViewTextBoxColumn.HeaderText = "Дата";
-            this.датаDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.датаDataGridViewTextBoxColumn.Name = "датаDataGridViewTextBoxColumn";
-            this.датаDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // idTypeDataGridViewTextBoxColumn
-            // 
-            this.idTypeDataGridViewTextBoxColumn.DataPropertyName = "idType";
-            this.idTypeDataGridViewTextBoxColumn.HeaderText = "idType";
-            this.idTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idTypeDataGridViewTextBoxColumn.Name = "idTypeDataGridViewTextBoxColumn";
-            this.idTypeDataGridViewTextBoxColumn.Visible = false;
-            this.idTypeDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // fKorderorderTypeBindingSource
-            // 
-            this.fKorderorderTypeBindingSource.DataMember = "FK_order_orderType";
-            this.fKorderorderTypeBindingSource.DataSource = this.orderTypeBindingSource;
-            // 
             // orderTableAdapter
             // 
             this.orderTableAdapter.ClearBeforeFill = true;
-            // 
-            // orderTypeBindingSource1
-            // 
-            this.orderTypeBindingSource1.DataMember = "orderType";
-            this.orderTypeBindingSource1.DataSource = this.kursDataSet1;
             // 
             // button2
             // 
@@ -236,6 +179,84 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Мои заявки";
             // 
+            // zayavkiBindingSource
+            // 
+            this.zayavkiBindingSource.DataMember = "Zayavki";
+            this.zayavkiBindingSource.DataSource = this.kursDataSet;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // типЗаявкиDataGridViewTextBoxColumn
+            // 
+            this.типЗаявкиDataGridViewTextBoxColumn.DataPropertyName = "Тип заявки";
+            this.типЗаявкиDataGridViewTextBoxColumn.HeaderText = "Тип заявки";
+            this.типЗаявкиDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.типЗаявкиDataGridViewTextBoxColumn.Name = "типЗаявкиDataGridViewTextBoxColumn";
+            this.типЗаявкиDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // статусDataGridViewTextBoxColumn
+            // 
+            this.статусDataGridViewTextBoxColumn.DataPropertyName = "Статус";
+            this.статусDataGridViewTextBoxColumn.HeaderText = "Статус";
+            this.статусDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.статусDataGridViewTextBoxColumn.Name = "статусDataGridViewTextBoxColumn";
+            this.статусDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // датаDataGridViewTextBoxColumn
+            // 
+            this.датаDataGridViewTextBoxColumn.DataPropertyName = "Дата";
+            this.датаDataGridViewTextBoxColumn.HeaderText = "Дата";
+            this.датаDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.датаDataGridViewTextBoxColumn.Name = "датаDataGridViewTextBoxColumn";
+            this.датаDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // idTypeDataGridViewTextBoxColumn
+            // 
+            this.idTypeDataGridViewTextBoxColumn.DataPropertyName = "idType";
+            this.idTypeDataGridViewTextBoxColumn.HeaderText = "idType";
+            this.idTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idTypeDataGridViewTextBoxColumn.Name = "idTypeDataGridViewTextBoxColumn";
+            this.idTypeDataGridViewTextBoxColumn.Visible = false;
+            this.idTypeDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // имяDataGridViewTextBoxColumn
+            // 
+            this.имяDataGridViewTextBoxColumn.DataPropertyName = "Имя";
+            this.имяDataGridViewTextBoxColumn.HeaderText = "Имя";
+            this.имяDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.имяDataGridViewTextBoxColumn.Name = "имяDataGridViewTextBoxColumn";
+            this.имяDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // фамилияDataGridViewTextBoxColumn
+            // 
+            this.фамилияDataGridViewTextBoxColumn.DataPropertyName = "Фамилия";
+            this.фамилияDataGridViewTextBoxColumn.HeaderText = "Фамилия";
+            this.фамилияDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.фамилияDataGridViewTextBoxColumn.Name = "фамилияDataGridViewTextBoxColumn";
+            this.фамилияDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // отчествоDataGridViewTextBoxColumn
+            // 
+            this.отчествоDataGridViewTextBoxColumn.DataPropertyName = "Отчество";
+            this.отчествоDataGridViewTextBoxColumn.HeaderText = "Отчество";
+            this.отчествоDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.отчествоDataGridViewTextBoxColumn.Name = "отчествоDataGridViewTextBoxColumn";
+            this.отчествоDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // датаРешенияDataGridViewTextBoxColumn
+            // 
+            this.датаРешенияDataGridViewTextBoxColumn.DataPropertyName = "Дата решения";
+            this.датаРешенияDataGridViewTextBoxColumn.HeaderText = "Дата решения";
+            this.датаРешенияDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.датаРешенияDataGridViewTextBoxColumn.Name = "датаРешенияDataGridViewTextBoxColumn";
+            this.датаРешенияDataGridViewTextBoxColumn.Width = 125;
+            // 
             // Zayavki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -252,11 +273,9 @@
             this.Load += new System.EventHandler(this.Zayavki_Load);
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zayavkiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKorderorderTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zayavkiBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,21 +288,23 @@
         private KursDataSetTableAdapters.orderTypeTableAdapter orderTypeTableAdapter;
         private KursDataSet kursDataSet1;
         private KursDataSetTableAdapters.ZayavkiTableAdapter zayavkiTableAdapter;
-        private System.Windows.Forms.BindingSource orderTypeBindingSource;
-        private System.Windows.Forms.BindingSource zayavkiBindingSource;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource fKorderorderTypeBindingSource;
         private KursDataSetTableAdapters.orderTableAdapter orderTableAdapter;
-        private System.Windows.Forms.BindingSource orderTypeBindingSource1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn типЗаявкиDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn статусDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn датаDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn имяDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn фамилияDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn отчествоDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn датаРешенияDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource zayavkiBindingSource;
     }
 }

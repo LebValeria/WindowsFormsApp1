@@ -36,18 +36,27 @@ namespace WindowsFormsApp1.Заявки
             // TODO: данная строка кода позволяет загрузить данные в таблицу "kursDataSet.orderType". При необходимости она может быть перемещена или удалена.
             this.orderTypeTableAdapter.Fill(this.kursDataSet.orderType);
 
-            SqlCommand cmd = new SqlCommand("SELECT [orderType].[name] AS 'Тип заявки', [orderStatus].[name] AS 'Статус', [order].[creationDate] AS 'Дата', [order].id, orderType.id AS 'typeId'" +
-                "FROM [order] INNER JOIN [orderType] on [order].[orderTypeId] = [orderType].[id]" +
-                "Inner Join dbo.[orderStatus] on [order].[statusId] = [orderStatus].[id]" +
+            SqlCommand cmd = new SqlCommand("SELECT dbo.orderType.name AS[Тип заявки], dbo.orderStatus.name AS Статус, dbo.[order].creationDate AS Дата, " +
+                " dbo.orderType.id AS idType, dbo.[order].id, dbo.[user].name AS Имя, dbo.[user].lastName AS Фамилия, " +
+                " dbo.[user].middleName AS Отчество, dbo.[order].desDate AS[Дата решения] " +
+                " FROM     dbo.[order] INNER JOIN " +
+                " dbo.orderType ON dbo.[order].orderTypeId = dbo.orderType.id INNER JOIN " +
+                " dbo.orderStatus ON dbo.[order].statusId = dbo.orderStatus.id INNER JOIN " +
+                " dbo.[user] ON dbo.[order].userId = dbo.[user].id " +
                 "where[order].[userId] = @id", db.getConnection());
             if (userIsAdmin == "1")
             {
                 button1.Show();
                 button3.Show();
                 button4.Show();
-                cmd = new SqlCommand("SELECT [orderType].[name] AS 'Тип заявки', [orderStatus].[name] AS 'Статус', [order].[creationDate] AS 'Дата', [order].id, orderType.id AS 'typeId'" +
-                    "FROM [order] INNER JOIN [orderType] on [order].[orderTypeId] = [orderType].[id]" +
-                    "Inner Join dbo.[orderStatus] on [order].[statusId] = [orderStatus].[id]", db.getConnection());
+                cmd = new SqlCommand("SELECT dbo.orderType.name AS [Тип заявки], dbo.orderStatus.name AS Статус, dbo.[order].creationDate AS Дата," +
+                " dbo.orderType.id AS idType, dbo.[order].id, dbo.[user].name AS Имя, dbo.[user].lastName AS Фамилия, " +
+                " dbo.[user].middleName AS Отчество, dbo.[order].desDate AS[Дата решения] " +
+                " FROM     dbo.[order] INNER JOIN " +
+                " dbo.orderType ON dbo.[order].orderTypeId = dbo.orderType.id INNER JOIN " +
+                " dbo.orderStatus ON dbo.[order].statusId = dbo.orderStatus.id INNER JOIN " +
+                " dbo.[user] ON dbo.[order].userId = dbo.[user].id " +
+                    "where [order].[statusID] = 3", db.getConnection());
                 label2.Text = "Список заявок";
             }
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
@@ -66,15 +75,24 @@ namespace WindowsFormsApp1.Заявки
 
         private void RefreshTable()
         {
-            SqlCommand cmd = new SqlCommand("SELECT [orderType].[name] AS 'Тип заявки', [orderStatus].[name] AS 'Статус', [order].[creationDate] AS 'Дата', [order].id, orderType.id AS 'typeId'" +
-                "FROM [order] INNER JOIN [orderType] on [order].[orderTypeId] = [orderType].[id]" +
-                "Inner Join dbo.[orderStatus] on [order].[statusId] = [orderStatus].[id]" +
+            SqlCommand cmd = new SqlCommand("SELECT dbo.orderType.name AS [Тип заявки], dbo.orderStatus.name AS Статус, dbo.[order].creationDate AS Дата," +
+                " dbo.orderType.id AS idType, dbo.[order].id, dbo.[user].name AS Имя, dbo.[user].lastName AS Фамилия, " +
+                " dbo.[user].middleName AS Отчество, dbo.[order].desDate AS[Дата решения] " +
+                " FROM     dbo.[order] INNER JOIN " +
+                " dbo.orderType ON dbo.[order].orderTypeId = dbo.orderType.id INNER JOIN " +
+                " dbo.orderStatus ON dbo.[order].statusId = dbo.orderStatus.id INNER JOIN " +
+                " dbo.[user] ON dbo.[order].userId = dbo.[user].id " +
                 "where[order].[userId] = @id", db.getConnection());
             if (userIsAdmin == "1")
             {
-                cmd = new SqlCommand("SELECT [orderType].[name] AS 'Тип заявки', [orderStatus].[name] AS 'Статус', [order].[creationDate] AS 'Дата', [order].id, orderType.id AS 'typeId'" +
-                    "FROM [order] INNER JOIN [orderType] on [order].[orderTypeId] = [orderType].[id]" +
-                    "Inner Join dbo.[orderStatus] on [order].[statusId] = [orderStatus].[id]", db.getConnection());
+                cmd = new SqlCommand("SELECT dbo.orderType.name AS [Тип заявки], dbo.orderStatus.name AS Статус, dbo.[order].creationDate AS Дата," +
+                " dbo.orderType.id AS idType, dbo.[order].id, dbo.[user].name AS Имя, dbo.[user].lastName AS Фамилия, " +
+                " dbo.[user].middleName AS Отчество, dbo.[order].desDate AS[Дата решения] " +
+                " FROM     dbo.[order] INNER JOIN " +
+                " dbo.orderType ON dbo.[order].orderTypeId = dbo.orderType.id INNER JOIN " +
+                " dbo.orderStatus ON dbo.[order].statusId = dbo.orderStatus.id INNER JOIN " +
+                " dbo.[user] ON dbo.[order].userId = dbo.[user].id " +
+                    "where[order].[statusID] = 3", db.getConnection());
             }
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
             db.openConnection();
@@ -92,6 +110,10 @@ namespace WindowsFormsApp1.Заявки
                 ZayavkiChange zayavkiChange = new ZayavkiChange(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
                 zayavkiChange.FormClosed += new FormClosedEventHandler(Snils_FormClosing);
                 zayavkiChange.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Эту заявку нельзя изменить");
             }
         }
 
@@ -112,21 +134,37 @@ namespace WindowsFormsApp1.Заявки
         private void button3_Click(object sender, EventArgs e)
         {
             DB db = new DB();
-            SqlCommand command = new SqlCommand("update [order] set [statusId] = '1' where [id] = @id", db.getConnection());
-            command.Parameters.Add("@id", SqlDbType.Int).Value = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
-            db.openConnection();
-            command.ExecuteNonQuery();
-            RefreshTable();
+            try
+            {
+                SqlCommand command = new SqlCommand("update [order] set [statusId] = '1', [desDate] = @date where [id] = @id", db.getConnection());
+                command.Parameters.Add("@id", SqlDbType.Int).Value = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+                command.Parameters.Add("@date", SqlDbType.Date).Value = DateTime.Today;
+                db.openConnection();
+                command.ExecuteNonQuery();
+                RefreshTable();
+            }
+            catch
+            {
+                MessageBox.Show("Не выбрана заявка");
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             DB db = new DB();
-            SqlCommand command = new SqlCommand("update [order] set [statusId] = '2' where [id] = @id", db.getConnection());
-            command.Parameters.Add("@id", SqlDbType.Int).Value = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
-            db.openConnection();
-            command.ExecuteNonQuery();
-            RefreshTable();
+            try
+            {
+                SqlCommand command = new SqlCommand("update [order] set [statusId] = '2', [desDate] = @date where [id] = @id", db.getConnection());
+                command.Parameters.Add("@id", SqlDbType.Int).Value = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+                command.Parameters.Add("@date", SqlDbType.Date).Value = DateTime.Today;
+                db.openConnection();
+                command.ExecuteNonQuery();
+                RefreshTable();
+            }
+            catch
+            {
+                MessageBox.Show("Не выбрана заявка");
+            }
         }
     }
 }

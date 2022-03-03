@@ -216,6 +216,12 @@
     <Compile Include="doc\BirthSertificate.Designer.cs">
       <DependentUpon>BirthSertificate.cs</DependentUpon>
     </Compile>
+    <Compile Include="doc\Passport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doc\Passport.Designer.cs">
+      <DependentUpon>Passport.cs</DependentUpon>
+    </Compile>
     <Compile Include="doc\Snils.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,11 +253,17 @@
     <Compile Include="Заявки\AddZayavka.Designer.cs">
       <DependentUpon>AddZayavka.cs</DependentUpon>
     </Compile>
-    <Compile Include="Заявки\Passport14.cs">
+    <Compile Include="Заявки\ArchiveZ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Заявки\Passport14.Designer.cs">
-      <DependentUpon>Passport14.cs</DependentUpon>
+    <Compile Include="Заявки\ArchiveZ.Designer.cs">
+      <DependentUpon>ArchiveZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Заявки\dataZayavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заявки\dataZayavka.Designer.cs">
+      <DependentUpon>dataZayavka.cs</DependentUpon>
     </Compile>
     <Compile Include="Заявки\Zayavki.cs">
       <SubType>Form</SubType>
@@ -267,6 +279,9 @@
     </Compile>
     <EmbeddedResource Include="doc\BirthSertificate.resx">
       <DependentUpon>BirthSertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doc\Passport.resx">
+      <DependentUpon>Passport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="doc\Snils.resx">
       <DependentUpon>Snils.cs</DependentUpon>
@@ -289,8 +304,11 @@
     <EmbeddedResource Include="Заявки\AddZayavka.resx">
       <DependentUpon>AddZayavka.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Заявки\Passport14.resx">
-      <DependentUpon>Passport14.cs</DependentUpon>
+    <EmbeddedResource Include="Заявки\ArchiveZ.resx">
+      <DependentUpon>ArchiveZ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Заявки\dataZayavka.resx">
+      <DependentUpon>dataZayavka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Заявки\Zayavki.resx">
       <DependentUpon>Zayavki.cs</DependentUpon>

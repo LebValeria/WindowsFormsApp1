@@ -37,7 +37,9 @@ namespace WindowsFormsApp1
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter();
 
-            SqlCommand command = new SqlCommand("Select [login], [id], [userGroupId] from [user] where [login] = @login and [password] = @password", db.getConnection());
+            SqlCommand command = new SqlCommand("Select [user].[name], [user].[id], [passport].[series], [passport].[number], [user].[userGroupId] from [passport] inner join [user] on " +
+                "[user].[id] = [passport].[userId] " +
+                "where [series] = @login and [number] = @password", db.getConnection());
             command.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
             command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
 
@@ -48,7 +50,7 @@ namespace WindowsFormsApp1
             {
                 label3.Text ="Вы вошли как " + table.Rows[0][0].ToString();
                 userID = table.Rows[0][1].ToString();
-                userIsAdmin = table.Rows[0][2].ToString();
+                userIsAdmin = table.Rows[0][4].ToString();
                 textBoxLogin.Hide();
                 textBoxPassword.Hide();
                 label1.Hide();
@@ -61,6 +63,7 @@ namespace WindowsFormsApp1
                 if(userIsAdmin == "1")
                 {
                     button2.Text = "Список заявок";
+                    button3.Show();
                 }
             }
             else
@@ -85,12 +88,7 @@ namespace WindowsFormsApp1
             buttonQuit.Hide();
             label3.Text = "Вы не аавторизованы";
             button2.Text = "Мои заявки";
-        }
-
-        private void получениеПаспорта14ЛетToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Заявки.Passport14 passport14 = new Заявки.Passport14(userID, userIsAdmin);
-            passport14.ShowDialog();
+            button3.Hide();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -109,6 +107,18 @@ namespace WindowsFormsApp1
         {
             Zayavki zayavki = new Zayavki(userID,userIsAdmin);
             zayavki.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ArchiveZ archiveZ = new ArchiveZ(userIsAdmin);
+            archiveZ.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            dataZayavka dataZayavka = new dataZayavka();
+            dataZayavka.ShowDialog();
         }
     }
 }
