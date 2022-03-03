@@ -51,6 +51,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kursDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource)).BeginInit();
@@ -120,11 +121,11 @@
             this.датаDataGridViewTextBoxColumn,
             this.idTypeDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.zayavkiBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 32);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(815, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(815, 305);
             this.dataGridView1.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn
@@ -184,9 +185,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(20, 235);
+            this.button2.Location = new System.Drawing.Point(20, 343);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(230, 37);
+            this.button2.Size = new System.Drawing.Size(195, 37);
             this.button2.TabIndex = 5;
             this.button2.Text = "Изменить";
             this.button2.UseVisualStyleBackColor = true;
@@ -194,9 +195,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(268, 235);
+            this.button1.Location = new System.Drawing.Point(221, 343);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(230, 37);
+            this.button1.Size = new System.Drawing.Size(214, 37);
             this.button1.TabIndex = 6;
             this.button1.Text = "Данные пользователя";
             this.button1.UseVisualStyleBackColor = true;
@@ -205,9 +206,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(504, 235);
+            this.button3.Location = new System.Drawing.Point(441, 343);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(161, 37);
+            this.button3.Size = new System.Drawing.Size(192, 37);
             this.button3.TabIndex = 7;
             this.button3.Text = "Одобрить заявку";
             this.button3.UseVisualStyleBackColor = true;
@@ -216,20 +217,31 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(671, 235);
+            this.button4.Location = new System.Drawing.Point(639, 343);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(164, 37);
+            this.button4.Size = new System.Drawing.Size(196, 37);
             this.button4.TabIndex = 8;
             this.button4.Text = "Отклонить заявку";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(371, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Мои заявки";
+            // 
             // Zayavki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 450);
+            this.ClientSize = new System.Drawing.Size(850, 400);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -246,6 +258,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fKorderorderTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderTypeBindingSource1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -271,5 +284,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label2;
     }
 }

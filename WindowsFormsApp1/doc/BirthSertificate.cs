@@ -22,29 +22,26 @@ namespace WindowsFormsApp1.doc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=LAPTOPPC;Initial Catalog=Kurs;Integrated Security=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            DB db = new DB();
+            SqlCommand cmd = new SqlCommand("Insert into [birthSertificate] ([userId],[dateOfIssue], [number], [issuedBy], [mother], [father])" +
+                " values (@id, @date, @number, @by, @mother, @father)", db.getConnection());
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+            cmd.Parameters.Add("@date", SqlDbType.Date).Value = textBox1.Text;
+            cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = textBox2.Text;
+            cmd.Parameters.Add("@by", SqlDbType.VarChar).Value = textBox3.Text;
+            cmd.Parameters.Add("@mother", SqlDbType.VarChar).Value = textBox4.Text;
+            cmd.Parameters.Add("@father", SqlDbType.VarChar).Value = textBox5.Text;
+            db.openConnection();
+            try
             {
-
-                SqlCommand cmd = new SqlCommand("Insert into [birthSertificate] ([userId],[dateOfIssue], [number], [issuedBy], [mother], [father])" +
-                    " values (@id, @date, @number, @by, @mother, @father)", connection);
-                cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-                cmd.Parameters.Add("@date", SqlDbType.Date).Value = textBox1.Text;
-                cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = textBox2.Text;
-                cmd.Parameters.Add("@by", SqlDbType.VarChar).Value = textBox3.Text;
-                cmd.Parameters.Add("@mother", SqlDbType.VarChar).Value = textBox4.Text;
-                cmd.Parameters.Add("@father", SqlDbType.VarChar).Value = textBox1.Text;
-                connection.Open();
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Свидетельство о рождении добавлено");
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка данные не введены");
-                }
+               cmd.ExecuteNonQuery();
+               MessageBox.Show("Свидетельство о рождении добавлено");
             }
+            catch
+            {
+                MessageBox.Show("Ошибка данные не введены");
+            }
+            db.closeConnection();
         }
     }
 }

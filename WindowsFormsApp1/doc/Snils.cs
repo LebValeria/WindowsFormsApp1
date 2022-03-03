@@ -27,25 +27,21 @@ namespace WindowsFormsApp1.doc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=LAPTOPPC;Initial Catalog=Kurs;Integrated Security=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            DB db = new DB();
+            SqlCommand cmd = new SqlCommand("Insert into [snils] ([userId],[number]) values (@id, @number)", db.getConnection());
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+            cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = textBox1.Text;
+            db.openConnection();
+            try
             {
-                
-                SqlCommand cmd = new SqlCommand("Insert into [snils] ([userId],[number]) values (@id, @number)", connection);
-                cmd.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-                cmd.Parameters.Add("@number", SqlDbType.VarChar).Value = textBox1.Text;
-                connection.Open();
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Снилс добавлен");
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка данные не введены");
-                }
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Снилс добавлен");
             }
-                
+            catch
+            {
+                MessageBox.Show("Ошибка данные не введены");
+            }
+            db.closeConnection();
         }
     }
 }

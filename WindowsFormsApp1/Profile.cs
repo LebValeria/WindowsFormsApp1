@@ -32,25 +32,17 @@ namespace WindowsFormsApp1
             this.nationalityTableAdapter.Fill(this.kursDataSet.nationality);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "kursDataSet.gender". При необходимости она может быть перемещена или удалена.
             this.genderTableAdapter.Fill(this.kursDataSet.gender);
-
-
-
-            
             FormRefresh();
         }
         
         private void FormRefresh()
         {
             DataTable table2 = new DataTable();
-
             SqlCommand command = new SqlCommand("Select [genderId], [name], [lastName], [middleName], [birthday], [nativeCity], " +
                 "[email], [phoneNumber], [nationalyId], [familyStatusId] from [user] where [id] = @id", db2.getConnection());
             command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-
             adapter2.SelectCommand = command;
-
             adapter2.Fill(table2);
-
             if (table2.Rows.Count > 0)
             {
                 comboBox1.SelectedValue = table2.Rows[0][0].ToString();
@@ -68,12 +60,9 @@ namespace WindowsFormsApp1
             SqlCommand command2 = new SqlCommand("Select [number] " +
                 " from [snils] where [userId] = @id", db2.getConnection());
             command2.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-
             adapter2.SelectCommand = command2;
             DataTable table3 = new DataTable();
-
             adapter2.Fill(table3);
-
             if (table3.Rows.Count > 0)
             {
                 textBox8.Text = table3.Rows[0][0].ToString();
@@ -86,11 +75,9 @@ namespace WindowsFormsApp1
             SqlCommand command3 = new SqlCommand("Select [dateOfIssue], [number], [issuedBy], [mother], [father] " +
                 " from [birthSertificate] where [userId] = @id", db2.getConnection());
             command3.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-
             adapter2.SelectCommand = command3;
             DataTable table4 = new DataTable();
             adapter2.Fill(table4);
-
             if (table4.Rows.Count > 0)
             {
                 textBox9.Text = table4.Rows[0][0].ToString();
@@ -107,7 +94,6 @@ namespace WindowsFormsApp1
                 textBox12.ReadOnly = true;
                 textBox13.ReadOnly = true;
             }
-
             db2.closeConnection();
         }
 
@@ -118,71 +104,67 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=LAPTOPPC;Initial Catalog=Kurs;Integrated Security=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            SqlCommand command = new SqlCommand("update [user] set  [genderId] = @gen,[name] = @name, [lastName] = @lastN," +
+                "[middleName] = @middleN, [birthday] = @birthday, [nativeCity] = @city, " +
+                "[email] =@email, [phoneNumber]= @phone, [nationalyId]=@national, [familyStatusId]=@family where [id] = @id", db2.getConnection());
+            command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+            command.Parameters.Add("@gen", SqlDbType.Int).Value = comboBox1.SelectedValue.ToString();
+            command.Parameters.Add("@name", SqlDbType.VarChar).Value = textBox1.Text;
+            command.Parameters.Add("@lastN", SqlDbType.VarChar).Value = textBox2.Text;
+            command.Parameters.Add("@middleN", SqlDbType.VarChar).Value = textBox3.Text;
+            command.Parameters.Add("@birthday", SqlDbType.Date).Value = textBox4.Text;
+            command.Parameters.Add("@city", SqlDbType.VarChar).Value = textBox5.Text;
+            command.Parameters.Add("@email", SqlDbType.VarChar).Value = textBox6.Text;
+            command.Parameters.Add("@phone", SqlDbType.VarChar).Value = textBox7.Text;
+            command.Parameters.Add("@national", SqlDbType.Int).Value = comboBox2.SelectedValue.ToString();
+            command.Parameters.Add("@family", SqlDbType.Int).Value = comboBox3.SelectedValue.ToString();
+            db2.openConnection();
+            try
             {
-                SqlCommand command = new SqlCommand("update [user] set  [genderId] = @gen,[name] = @name, [lastName] = @lastN," +
-                    "[middleName] = @middleN, [birthday] = @birthday, [nativeCity] = @city, " +
-                "[email] =@email, [phoneNumber]= @phone, [nationalyId]=@national, [familyStatusId]=@family where [id] = @id", connection);
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("Неверно введена информация");
+            }
+
+            if (textBox8.Text.Length > 0)
+            {
+                command = new SqlCommand("update [snils] set [number]=@number where [userId]=@id", db2.getConnection());
                 command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-                command.Parameters.Add("@gen", SqlDbType.Int).Value = comboBox1.SelectedValue.ToString();
-                command.Parameters.Add("@name", SqlDbType.VarChar).Value = textBox1.Text;
-                command.Parameters.Add("@lastN", SqlDbType.VarChar).Value = textBox2.Text;
-                command.Parameters.Add("@middleN", SqlDbType.VarChar).Value = textBox3.Text;
-                command.Parameters.Add("@birthday", SqlDbType.Date).Value = textBox4.Text;
-                command.Parameters.Add("@city", SqlDbType.VarChar).Value = textBox5.Text;
-                command.Parameters.Add("@email", SqlDbType.VarChar).Value = textBox6.Text;
-                command.Parameters.Add("@phone", SqlDbType.VarChar).Value = textBox7.Text;
-                command.Parameters.Add("@national", SqlDbType.Int).Value = comboBox2.SelectedValue.ToString();
-                command.Parameters.Add("@family", SqlDbType.Int).Value = comboBox3.SelectedValue.ToString();
-                connection.Open();
+                command.Parameters.Add("@number", SqlDbType.Int).Value = textBox8.Text;
                 try
                 {
                     command.ExecuteNonQuery();
                 }
                 catch
                 {
-                    MessageBox.Show("Неверно введена информация");
+                    MessageBox.Show("Неверно введен снилс");
                 }
+            }   
 
-                if (textBox8.Text.Length > 0)
+            command = new SqlCommand("update [birthSertificate] set [dateOfIssue]=@ofIs, [number]=@number," +
+            "[issuedBy] = @by, [mother]=@mother, [father]=@father where [userId]=@id", db2.getConnection());
+            if(textBox9.Text.Length > 0 && textBox10.Text.Length > 0 && textBox11.Text.Length > 0 && textBox12.Text.Length > 0 && textBox13.Text.Length > 0)
+            {
+                command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@ofIs", SqlDbType.Date).Value = textBox9.Text;
+                command.Parameters.Add("@number", SqlDbType.Int).Value = textBox10.Text;
+                command.Parameters.Add("@by", SqlDbType.VarChar).Value = textBox11.Text;
+                command.Parameters.Add("@mother", SqlDbType.VarChar).Value = textBox12.Text;
+                command.Parameters.Add("@father", SqlDbType.VarChar).Value = textBox13.Text;
+                try
                 {
-                    command = new SqlCommand("update [snils] set [number]=@number where [userId]=@id", connection);
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-                    command.Parameters.Add("@number", SqlDbType.Int).Value = textBox8.Text;
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Неверно введен снилс");
-                    }
+                    command.ExecuteNonQuery();
                 }
-                
-
-                command = new SqlCommand("update [birthSertificate] set [dateOfIssue]=@ofIs, [number]=@number," +
-                    "[issuedBy] = @by, [mother]=@mother, [father]=@father where [userId]=@id", connection);
-                if(textBox9.Text.Length > 0 && textBox10.Text.Length > 0 && textBox11.Text.Length > 0 && textBox12.Text.Length > 0 && textBox13.Text.Length > 0)
+                catch
                 {
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-                    command.Parameters.Add("@ofIs", SqlDbType.Date).Value = textBox9.Text;
-                    command.Parameters.Add("@number", SqlDbType.Int).Value = textBox10.Text;
-                    command.Parameters.Add("@by", SqlDbType.VarChar).Value = textBox11.Text;
-                    command.Parameters.Add("@mother", SqlDbType.VarChar).Value = textBox12.Text;
-                    command.Parameters.Add("@father", SqlDbType.VarChar).Value = textBox13.Text;
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Неверно введен сертификат о рождении");
-                    }
+                    MessageBox.Show("Неверно введен сертификат о рождении");
                 }
             }
-
+            db2.closeConnection();
         }
+
         void Snils_FormClosing(object sender, EventArgs e)
         {
             FormRefresh();
